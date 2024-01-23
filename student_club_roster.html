@@ -65,7 +65,7 @@
     let removeStudentButton = document.querySelector('#remove-selected-students') //find button in HTML with id 'remove-selected-students' and call it removeStudentButton
 
 
-    listCount.innerHTML = studentCount  //Using JavaScript, display 0 in the span#student-count
+    listCount.innerHTML = studentCount  //Using JavaScript, display 0 in the span#student-count. ListCount in HTML is the same as the variable studentCount in script.
 
     addStudentButton.addEventListener('click', function () {  //Add an event listener so that when button#add-students is clicked alerts are received
         //read the text in the input
@@ -92,17 +92,11 @@
         let newListItem = document.createElement('li')
         // li element text should be the text from the input
             newListItem.innerHTML = (studentEntered + '- ' + 'ID: ' + idEntered + ' GPA: ' + gpaEntered) //Use a template string to generate this string
-
-            newListItem.addEventListener('click', function() { // Add a click event handler to the new li element.
-                newListItem.classList.toggle("selected") //from https://www.w3schools.com/howto/howto_js_toggle_class.asp
-                //When the li element is clicked, add the class="selected" to that li element.
-                //When that li element is clicked again, remove the class="selected" from that li element aka 'toggle' function
-
-            })
+            //the HTML content of the li element is the string above
 
 
         // ---DOES THIS GO BETWEEN .createElement AND addEventListener? IT SEEMS TO WORK IN THIS ORDER, BUT DOESN'T SEEM QUITE RIGHT
-        //IN TERMS OF ORDER OF OPERATIONS??
+        //IN TERMS OF ORDER OF OPERATIONS?? In example from videos (create_list) it goes in this order- let newListItem, newListItem.innerHTML, memberList.appendChild
         memberList.appendChild(newListItem)  //Add the new li element to ul#student-list element
 
         nameInput.value = ''  //clear the name info in the fields
@@ -112,12 +106,22 @@
         studentCount++  //add one to the student count behind the scenes
         listCount.innerHTML = studentCount  //update the HTML span section defined above on the screen
 
+
+            newListItem.addEventListener('click', function() { // Add a click event handler to the new li element.
+                newListItem.classList.toggle("selected") //from https://www.w3schools.com/howto/howto_js_toggle_class.asp
+                //When the li element is clicked, add the class="selected" to that li element.
+                //When that li element is clicked again, remove the class="selected" from that li element aka 'toggle' function
+
+            })
+
     })
     //from:  https://jsfiddle.net/rk9pm4vg/
     removeStudentButton.addEventListener('click', function () {  // Add an event listener so that when button#remove-selected-students is clicked:
         let studentToDelete = document.querySelectorAll('.selected')  //Remove all the elements with the class="selected" from the list.
         studentToDelete.forEach( function (student) {
             student.remove()  //Using the remove() function on an element will remove it.
+            studentCount--
+            listCount.innerHTML = studentCount //adjust student count in HTML
         })
     })
 
