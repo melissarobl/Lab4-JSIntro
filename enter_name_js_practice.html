@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+</head>
+<body>
+
+<p label for="name">Please enter your name</p>
+<!-- text that instructs user-->
+<input type="text" id="username">
+<!--input is text (not numbers, for example)-->
+<button id="save-user-name">Save</button>
+
+<p id="welcome-message"></p>
+<!-- Write your HTML content here -->
+
+<script>
+
+    //defining variables that will be used
+    let saveButton = document.querySelector('#save-user-name')
+    let nameInput = document.querySelector('#username')
+    let welcomeMessage = document.querySelector('#welcome-message')
+
+    //saying what will happen if user performs action on save button. Action = click on button this example
+    saveButton.addEventListener('click', function (){
+        let name= nameInput.value  //name is variable for what is entered in the 'name' field
+
+        if(name.length <2) { //if that name field has less than 2 characters, display message below
+            welcomeMessage.innerHTML = "Please enter at least two letters."
+        } else {
+            welcomeMessage.innerHTML = `Welcome, ${name}!`  //must be back ticks for this to work
+            //other option: 'Welcome, ' + name + '!'
+        }
+    })
+
+</script>
+
+</body>
+</html>

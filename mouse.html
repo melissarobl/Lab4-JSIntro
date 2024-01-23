@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mouse Moves</title>
+</head>
+<body>
+
+<!-- Write your HTML content here -->
+<p id="mouse-me">Move your mouse here!</p>
+
+<script>
+
+    let mouseCount = 0  //start with mouseCount at zero
+
+    let message = document.querySelector('#mouse-me') //message is the id in the HTML called 'mouse-me'
+
+    message.addEventListener('mouseover', function(){
+        // increase mouseCount by one
+        mouseCount = mouseCount + 1  // add one to count for each time mouseCount happens
+        if (mouseCount == 1) { //change message to reflect grammatically correct sentence for 1 or more than one
+            message.innerHTML = 'Mouse has been here ' + mouseCount + ' time'
+        } else {
+            message.innerHTML = 'Mouse has been here ' + mouseCount + ' times'
+        }
+    })
+
+    message.addEventListener('mouseout', function() {
+        message.innerHTML = 'Your mouse is NOT on this message'
+    })
+
+
+
+</script>
+
+</body>
+</html>

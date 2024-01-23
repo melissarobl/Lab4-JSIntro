@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Click the Button!</title>
+    <!-- Write your css link here -->
+</head>
+<body>
+
+<!-- Write your HTML content here -->
+<button>Click Here!</button>
+<script>
+
+    // Write your script here. Script goes below html because code is read from top down and we want
+    //to be read first. Otherwise it will have information about HTML elements that aren't provided yet
+
+    let button = document.querySelector('button') //Will find 'button' in html. This is a variable declaration
+
+    button.addEventListener('click', function() {
+        alert('You clicked the button!')  //message displayed on click by user
+    })
+
+</script>
+
+</body>
+</html>

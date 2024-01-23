@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Make a list</title>
+</head>
+<body>
+
+<p>Enter some text to add to the list</p>
+<input id="new-text"></input>
+<button id="add-text">Add</button>
+<button id="clear-text">Clear</button>
+
+<!-- Write your HTML content here -->
+
+<ul id="list-of-text"></ul> <!--placeholder for where list will go  -->
+
+
+<script>
+
+    // make variables in elements to find them
+    let textInput = document.querySelector('#new-text')
+    let addButton = document.querySelector('#add-text')
+    let clearButton = document.querySelector('#clear-text')
+    let textList = document.querySelector('#list-of-text')
+
+    let elementsInList = 0  //tracking number of items in list
+    let maxElements = 10  //max number of items in list
+
+    document.addEventListener('keyup', function() { // 'document' attaches event listener to entire HTML document
+        if (event.keyCode === 13 || event.key === 'Enter') {
+            addButton.click()  //click the AddButton if user presses enter key
+        }
+    })
+
+    //what events do we need to respond to?
+
+    addButton.addEventListener('click', function () {
+        //read the text in the input
+        let newText = textInput.value
+
+        // if (newText.length == 0) {  //validate user has typed in some text, show error message when 'add' pressed and textbox blank
+        //     alert('Enter some text')
+        //     return
+        // }
+
+        if (newText.length == 0) {  //ignore the user input if there is no text entered
+            return
+        }
+
+        if (newText.length > 50) {
+            alert('Text limit is 50 characters.')
+            return
+        }
+
+        if (elementsInList >= maxElements){  //check the max number is not exceeded
+            alert('no more elements can be added')
+            return
+        }
+
+
+        //create a new li element
+        let newListItem = document.createElement('li')
+        // li element text should be the text from the input
+        newListItem.innerHTML = newText
+
+        //add the new li element as a child of the ul element
+        textList.appendChild(newListItem)
+
+        //clear the text in the input
+        textInput.value = ''
+        // if there are any event listeners attached to any of those child elements,
+        // the event listeners won't be removed and the browser will still be listening for
+        // possible events from these non-existent elements, which is a waste of resources.
+        //For this example, there are no listeners on the li elements,
+        // but in another situation you would want to specifically remove the elements,
+        // as described here https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+
+        elementsInList++
+
+        })
+
+    clearButton.addEventListener('click', function() {
+        textList.innerHTML = ''  //innerHTML sets or returns the HTML content of an element
+        elementsInList = 0 //after list is cleared, reset count to zero
+    })
+
+</script>
+
+</body>
+</html>
