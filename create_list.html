@@ -5,10 +5,11 @@
 </head>
 <body>
 
-<p>Enter some text to add to the list</p>
-<input id="new-text"></input>
-<button id="add-text">Add</button>
-<button id="clear-text">Clear</button>
+<label for ="new-text">Enter some text</label>
+<input id="new-text">
+<br>
+<button id="add-text">Add text to List</button>
+<button id="clear-list">Clear List</button>
 
 <!-- Write your HTML content here -->
 
@@ -20,7 +21,7 @@
     // make variables in elements to find them
     let textInput = document.querySelector('#new-text')
     let addButton = document.querySelector('#add-text')
-    let clearButton = document.querySelector('#clear-text')
+    let clearButton = document.querySelector('#clear-list')
     let textList = document.querySelector('#list-of-text')
 
     let elementsInList = 0  //tracking number of items in list
@@ -35,7 +36,7 @@
     //what events do we need to respond to?
 
     addButton.addEventListener('click', function () {
-        //read the text in the input
+        //read the text in the input box
         let newText = textInput.value
 
         // if (newText.length == 0) {  //validate user has typed in some text, show error message when 'add' pressed and textbox blank
@@ -43,7 +44,7 @@
         //     return
         // }
 
-        if (newText.length == 0) {  //ignore the user input if there is no text entered
+        if (newText.length === 0) {  //ignore the user input if there is no text entered
             return
         }
 
@@ -53,7 +54,7 @@
         }
 
         if (elementsInList >= maxElements){  //check the max number is not exceeded
-            alert('no more elements can be added')
+            alert('No more items can be added')
             return
         }
 

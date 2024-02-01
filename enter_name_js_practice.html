@@ -17,9 +17,9 @@
 <script>
 
     //defining variables that will be used
-    let saveButton = document.querySelector('#save-user-name')
-    let nameInput = document.querySelector('#username')
-    let welcomeMessage = document.querySelector('#welcome-message')
+    const saveButton = document.querySelector('#save-user-name')
+    const nameInput = document.querySelector('#username')
+    const welcomeMessage = document.querySelector('#welcome-message')
 
     //saying what will happen if user performs action on save button. Action = click on button this example
     saveButton.addEventListener('click', function (){
@@ -28,6 +28,7 @@
         if(name.length <2) { //if that name field has less than 2 characters, display message below
             welcomeMessage.innerHTML = "Please enter at least two letters."
         } else {
+            name = name.trim() //remove white spaces after name if entered
             welcomeMessage.innerHTML = `Welcome, ${name}!`  //must be back ticks for this to work
             //other option: 'Welcome, ' + name + '!'
         }
