@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--box for user to type something in, defaults to text entry-->
+<label for="new-text">Enter your text</label>
+<input id="new-text">
+
+<!--an empty list here, contents will be created with JavaScript -->
+<!--based on the data the user enters -->
+<!--need to give every element that JavaScript will interact with, a way to find that element -->
+<!--usually the easiest way to do that is to give that element a unique id -->
+<ul id="list-of-text"></ul>
+
+<button id="add-new-text">Add text to list</button>
+
+<button id="clear-all-list">Clear all list items</button>
+
+    <script>
+
+        let addNewTextButton = document.querySelector('#add-new-text')
+        let newTextInput = document.querySelector('#new-text')
+        let unorderedListOfTextElement = document.querySelector('#list-of-text')
+        let clearListButton = document.querySelector('#clear-all-list')
+
+       // another way: document.querySelectorAll and find all the li items, count how man there are
+        let numberOfItemsInList = 0
+
+
+
+        clearListButton.addEventListener('click', function(){
+            unorderedListOfTextElement.innerHTML = ''
+        })
+
+        addNewTextButton.addEventListener('click', function() {
+
+            if(numberOfItemsInList >= 10)
+                alert('That is too many items')
+                return //stop processing this function - don't proceed to the code below
+
+            //the value of a text input is the text it displays -read and write to this
+            let newTextEntered = newTextInput.value  //read the text entered in the input element
+
+
+            if (newTextEntered.length > 50) {
+                //show an alert and return, stop processing
+                alert('Text limit is 50 characters.')
+                return
+            }
+
+            if (newTextEntered.length === 0) {
+                //don't show an alert
+                //return and stop processing
+            }
+            let newLiElement = document.createElement('li')
+            //configure and customize theis element- what text will it display?
+            newLiElement.innerHTML = newTextEntered
+
+            unorderedListOfTextElement.appendChild(newLiElement)
+            numberOfItemsInList = numberOfItemsInList++
+
+            //clear the input by setting the value to an empty string
+
+            newTextInput.value = ''
+
+
+        })
+
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- https://github.com/claraj/week3-examples/blob/main/template_inline_js.html -->
